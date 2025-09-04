@@ -85,32 +85,31 @@ public class ExpensesCounter {
 			
 			    String UpdateQuery = "UPDATE expenses.expensesadder SET Amount = ? WHERE Date = ? AND Amount = ? AND PurposeOfPurchase = ?";
 
-			    // Ask for new updated amount
+			   
 			    System.out.print("Please enter the Updated Amount: ");
 			    int UpdatedAmount = s.nextInt();
 
-			    // Ask for date
+			    
 			    System.out.println("Please Enter the Date of Purchase (yyyy-mm-dd): ");
-			    s.nextLine(); // consume newline left by nextInt
+			    s.nextLine(); 
 			    String date = s.nextLine();
 			    java.sql.Date sqldate = java.sql.Date.valueOf(date);
 
-			    // Ask for purpose
+			  
 			    System.out.println("Please Enter the Purpose Of Purchase: ");
 			    String pur = s.nextLine();
 
-			    // Ask for old amount (the amount to be replaced)
 			    System.out.println("Enter the Oldest Amount: ");
 			    int OldestAmount = s.nextInt();
 
-			    // Prepare query
+			    
 			    PreparedStatement ppss = con.prepareStatement(UpdateQuery);
 			    ppss.setInt(1, UpdatedAmount);
 			    ppss.setDate(2, sqldate);
 			    ppss.setInt(3, OldestAmount);
 			    ppss.setString(4, pur);
 
-			    // Execute update
+			    /
 			    int row = ppss.executeUpdate();
 
 			    if (row > 0) {
@@ -122,36 +121,36 @@ public class ExpensesCounter {
 
 				
 			case 4:
-			// (assuming this is for updating PurposeOfPurchase)
+			
 			    String PurchaseUpdate = "UPDATE expenses.expensesadder SET PurposeOfPurchase = ? WHERE Date = ? AND PurposeOfPurchase = ? AND Amount = ?";
 
-			    // Get updated purpose
+			   
 			    System.out.println("Please Enter the Updated Purpose of Purchase: ");
-			    s.nextLine(); // consume newline left from previous nextInt
+			    s.nextLine(); 
 			    String UpdatedPurpose = s.nextLine();
 
-			    // Get date
+			   
 			    System.out.println("Please Enter the Date for Match (yyyy-mm-dd): ");
 			    String MatchDate = s.nextLine();
 			    java.sql.Date sqldd = java.sql.Date.valueOf(MatchDate);
 
-			    // Get amount
+			    
 			    System.out.println("Enter the Amount for Match: ");
 			    int MatchAmount = s.nextInt();
-			    s.nextLine(); // consume newline
+			    s.nextLine(); 
 
-			    // Get old purpose
+			    
 			    System.out.println("Enter the Oldest Purpose of Purchase: ");
 			    String OldPurposeOfPurchase = s.nextLine();
 
-			    // Prepare statement
+			    
 			    PreparedStatement prep = con.prepareStatement(PurchaseUpdate);
 			    prep.setString(1, UpdatedPurpose);
 			    prep.setDate(2, sqldd);
 			    prep.setString(3, OldPurposeOfPurchase);
 			    prep.setInt(4, MatchAmount);
 
-			    // Execute update
+			   
 			    int Up = prep.executeUpdate();
 			    if (Up > 0) {
 			        System.out.println("The Purpose of Purchase was Updated");
